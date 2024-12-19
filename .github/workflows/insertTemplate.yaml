@@ -41,6 +41,9 @@ jobs:
           echo "Fetching metadata from ${{ inputs.metadataUrl }}"
           curl -sL "${{ inputs.metadataUrl }}" > metadata.json
 
+          # print metadata.json
+          cat metadata.json
+
           # Extract and validate metadata
           name=$(jq -r '.title' metadata.json)
           description=$(jq -r '.description' metadata.json)
