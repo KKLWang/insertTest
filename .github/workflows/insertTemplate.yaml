@@ -42,9 +42,9 @@ jobs:
           curl -sL "${{ inputs.metadataUrl }}" > metadata.json
 
           # Extract and validate metadata
-          name=$(jq -r '.name' metadata.json)
+          name=$(jq -r '.title' metadata.json)
           description=$(jq -r '.description' metadata.json)
-          repo_url=$(jq -r '.repositoryUrl' metadata.json)
+          repo_url=$(jq -r '.source' metadata.json)
 
           echo "Metadata Name: $name"
           echo "Description: $description"
