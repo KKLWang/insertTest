@@ -1,0 +1,1449 @@
+[
+  {
+    "title": "RAG chat with Azure AI Search + Python",
+    "description": "Creates a ChatGPT-like frontend with API backend that uses OpenAI chat models to answer questions about uploaded documents.",
+    "architectureDiagram": "./templates/images/azure-search-openai-demo-arch.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Azure Content Team"
+    ],
+    "email": [
+      "pamelafox@microsoft.com",
+      "anthonyshaw@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/azure-search-openai-demo",
+    "language": [
+      "python",
+      "typescript"
+    ],
+    "models": [
+      "gpt35turbo"
+    ],
+    "app_type": [
+      "search"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "appservice",
+      "openai",
+      "aisearch",
+      "blobstorage",
+      "monitor",
+      "aca"
+    ],
+    "prerequisites": [
+      "azd",
+      "nodejs18+",
+      "git",
+      "pwsh7+",
+      "python3.9-3.11"
+    ],
+    "tags": [
+      "featured",
+      "azureopenai"
+    ],
+    "screenshot": "/templates/images/azure-search-openai-demo-image.png",
+    "video": "https://www.youtube.com/embed/i1Lpig533cs?si=0I-HQrxHevydb41x",
+    "status_valid": true
+  },
+  {
+    "title": "Serverless GenAI assistant with LangChain",
+    "description": "Shows how Contoso Real Estate uses enterprise documents to generate responses to user queries with a LangChain serverless application.",
+    "architectureDiagram": "./templates/images/serverless-chat-langchainjs-chat.png",
+    "authorUrl": [
+      "https://github.com/glaucia86",
+      "https://github.com/sinedied"
+    ],
+    "author": [
+      "Glaucia Lemos",
+      "Yohan Lasorsa"
+    ],
+    "email": [
+      "yohan.lasorsa@microsoft.com",
+      "glaucia.lemos@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/serverless-chat-langchainjs",
+    "language": [
+      "javascript",
+      "typescript"
+    ],
+    "models": [
+      "mistral7b",
+      "gpt4turbo"
+    ],
+    "app_type": [
+      "chat"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "openai",
+      "aisearch",
+      "blobstorage",
+      "swa",
+      "functions",
+      "azurecosmosdb"
+    ],
+    "prerequisites": [
+      "azd",
+      "nodejslts",
+      "git",
+      "pwsh7+",
+      "functionscoretools"
+    ],
+    "tags": [
+      "mistralai",
+      "azureopenai"
+    ],
+    "screenshot": "./templates/images/serverless-chat-langchainjs-image.png",
+    "status_valid": true
+  },
+  {
+    "title": "RAG chat with Azure AI Search + C#",
+    "description": "Creates a ChatGPT-like frontend with API backend that uses OpenAI chat models to answer questions about uploaded documents.",
+    "architectureDiagram": "./templates/images/azure-search-openai-demo-csharp-arch.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Azure Content Team"
+    ],
+    "email": [
+      "xiaoyun.zhang@microsoft.com",
+      "brunocapuano@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/azure-search-openai-demo-csharp",
+    "language": [
+      "dotnetCsharp"
+    ],
+    "models": [
+      "gpt4omini"
+    ],
+    "app_type": [
+      "search"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "aisearch",
+      "openai",
+      "aca",
+      "monitor",
+      "blobstorage"
+    ],
+    "prerequisites": [
+      "azd",
+      ".net8",
+      "git",
+      "pwsh7+",
+      "docker"
+    ],
+    "tags": [
+      "azureopenai"
+    ],
+    "screenshot": "/templates/images/azure-search-openai-demo-csharp-image.png",
+    "status_valid": true
+  },
+  {
+    "title": "Retail chat app sample with customer Q&A and purchase history | Python ",
+    "description": "Shows how to build, evaluate, and deploy a GenAI chat experience using retail enterprise data with Python.",
+    "architectureDiagram": "./templates/images/contoso-chat-arch.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Azure Content Team"
+    ],
+    "email": [
+      "cassie.breviu@microsoft.com",
+      "nitya.narasimhan@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/contoso-chat",
+    "language": [
+      "python"
+    ],
+    "models": [
+      "gpt35turbo",
+      "gpt4"
+    ],
+    "app_type": [
+      "chat"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "azurecosmosdb",
+      "managedidentity",
+      "aifoundry",
+      "openai",
+      "aisearch",
+      "aca"
+    ],
+    "prerequisites": [
+      "azd",
+      "docker"
+    ],
+    "tags": [
+      "azureopenai"
+    ],
+    "screenshot": "/templates/images/contoso-chat-image.png",
+    "status_valid": true
+  },
+  {
+    "title": "RAG chat with Azure AI Search + JavaScript",
+    "description": "Creates a ChatGPT-like frontend with API backend that uses OpenAI chat models to answer questions about uploaded documents.",
+    "architectureDiagram": "./templates/images/azure-search-openai-javascript-arch.png",
+    "authorUrl": [
+      "https://github.com/anfibiacreativa",
+      "https://github.com/sinedied",
+      "https://github.com/manekinekko"
+    ],
+    "author": [
+      "Natalia Venditto",
+      "Yohan Lasorsa",
+      "Wassim Chegham"
+    ],
+    "email": [
+      "nvenditto@microsoft.com",
+      "yohan.lasorsa@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/azure-search-openai-javascript",
+    "language": [
+      "javascript",
+      "typescript"
+    ],
+    "models": [
+      "gpt35turbo"
+    ],
+    "app_type": [
+      "agent"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "azureaiservice",
+      "openai",
+      "blobstorage",
+      "aca",
+      "swa",
+      "monitor"
+    ],
+    "prerequisites": [
+      "azd",
+      "docker",
+      "nodejslts",
+      "git",
+      "pwsh7+"
+    ],
+    "tags": [
+      "azureopenai"
+    ],
+    "screenshot": "/templates/images/azure-search-openai-javascript-image.png",
+    "status_valid": true
+  },
+  {
+    "title": "RAG chat on PostgreSQL",
+    "description": "Creates a chat frontend with an API backend using OpenAI chat models to answer questions about rows in a PostgreSQL database.",
+    "architectureDiagram": "./templates/images/rag-postgres-openai-python-arch.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Azure Content Team"
+    ],
+    "email": [
+      "pamelafox@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/rag-postgres-openai-python",
+    "language": [
+      "python",
+      "typescript"
+    ],
+    "models": [
+      "gpt4omini",
+      "llama"
+    ],
+    "app_type": [
+      "search"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "azuredb-postgreSQL",
+      "aca",
+      "openai",
+      "monitor"
+    ],
+    "prerequisites": [
+      "azd",
+      "docker",
+      "git",
+      "nodejs18+",
+      "python3.10+",
+      "postgreSQL14+",
+      "pgvector"
+    ],
+    "tags": [
+      "meta",
+      "azureopenai"
+    ],
+    "screenshot": "/templates/images/rag-postgres-openai-python-image.png",
+    "status_valid": true
+  },
+  {
+    "title": "Securely authenticate and access your GenAI app with managed identity",
+    "description": "Demonstrates a GenAI chat application using managed identity for Azure OpenAI access.",
+    "architectureDiagram": "./templates/images/openai-chat-app-quickstart-arch.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Azure Content Team"
+    ],
+    "email": [
+      "pamelafox@microsoft.com",
+      "arun.chandrasekhar@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/openai-chat-app-quickstart",
+    "language": [
+      "python"
+    ],
+    "models": [
+      "gpt4omini"
+    ],
+    "app_type": [
+      "chat"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "managedidentity",
+      "azureaiservice",
+      "openai",
+      "aca"
+    ],
+    "prerequisites": [
+      "azd",
+      "docker",
+      "git",
+      "python3.10+"
+    ],
+    "tags": [
+      "azureopenai"
+    ],
+    "screenshot": "/templates/images/openai-chat-vision-quickstart-image.png",
+    "status_valid": true
+  },
+  {
+    "title": "RAG chat with Azure AI Search + Java",
+    "description": "Creates a ChatGPT-like frontend with API backend that uses OpenAI chat models to answer questions about uploaded documents.",
+    "architectureDiagram": "./templates/images/azure-search-openai-demo-java-arch.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Azure Content Team"
+    ],
+    "email": [
+      "dantelmo@microsoft.com",
+      "john.oliver@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/azure-search-openai-demo-java",
+    "language": [
+      "java",
+      "typescript"
+    ],
+    "models": [
+      "gpt4omini"
+    ],
+    "app_type": [
+      "search"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "openai",
+      "aisearch",
+      "appservice",
+      "aca",
+      "aks"
+    ],
+    "prerequisites": [
+      "azd",
+      "java17",
+      "nodejs",
+      "maven3.8.x",
+      "helm",
+      "k9s",
+      "git",
+      "pwsh7+",
+      "docker"
+    ],
+    "tags": [
+      "azureopenai"
+    ],
+    "screenshot": "/templates/images/azure-search-openai-demo-java-image.png",
+    "status_valid": true
+  },
+  {
+    "title": "GenAI chat experience on own data with LlamaIndex",
+    "description": "A foundation for building RAG applications with LlamaIndex.ai and Python.",
+    "architectureDiagram": "./templates/images/llama-index-python-arch.png",
+    "authorUrl": [
+      "https://github.com/marlenezw"
+    ],
+    "author": [
+      "Marlene Mhangami"
+    ],
+    "email": [
+      "mmhangami@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/llama-index-python",
+    "language": [
+      "python"
+    ],
+    "models": [
+      "gpt35turbo",
+      "llama"
+    ],
+    "app_type": [
+      "chat"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "aca",
+      "openai",
+      "managedidentity"
+    ],
+    "prerequisites": [
+      "azd",
+      "nodejslts",
+      "python3.9-3.11",
+      "git",
+      "pwsh7+",
+      "poetry"
+    ],
+    "tags": [
+      "meta",
+      "azureopenai"
+    ],
+    "screenshot": "/templates/images/llama-index-python-image.png",
+    "status_valid": true
+  },
+  {
+    "title": "GenAI chat frontend including debug, restyle, and revisit",
+    "description": "Demonstrates debugging responses, restyling, revisiting chat history, and resetting the chat.",
+    "architectureDiagram": "./templates/images/azure-openai-chat-frontend-arch.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Azure Content Team"
+    ],
+    "email": [
+      "nvenditto@microsoft.com",
+      "yohan.lasorsa@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/azure-openai-chat-frontend",
+    "language": [
+      "javascript",
+      "typescript"
+    ],
+    "models": [],
+    "app_type": [
+      "chat"
+    ],
+    "template_type": "building_block",
+    "azure_service": [
+      "swa",
+      "aisearch"
+    ],
+    "prerequisites": [
+      "nodejslts",
+      "azd"
+    ],
+    "tags": [
+      "azureopenai"
+    ],
+    "screenshot": "/templates/images/azure-openai-chat-frontend-image.png",
+    "status_valid": true
+  },
+  {
+    "title": "Serverless GenAI assistant using function calling",
+    "description": "Build simple AI assistants tailored to your needs via function calling, allowing for connection of LLMs to external tools and systems, including tasks such as: sending emails, running custom functions, and answering questions.",
+    "architectureDiagram": "./templates/images/azure-openai-assistant-javascript-arch.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Azure Content Team"
+    ],
+    "email": [
+      "wassim.chegham@microsoft.com, nvenditto@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/azure-openai-assistant-javascript",
+    "language": [
+      "javascript"
+    ],
+    "models": [
+      "gpt35turbo"
+    ],
+    "app_type": [
+      "agent"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "swa",
+      "functions",
+      "openai",
+      "managedidentity"
+    ],
+    "prerequisites": [
+      "azd",
+      "nodejslts",
+      "git",
+      "pwsh7+",
+      "swacli"
+    ],
+    "tags": [
+      "azureopenai"
+    ],
+    "screenshot": "/templates/images/azure-openai-assistant-demo-image.png",
+    "status_valid": true
+  },
+  {
+    "title": "Speech to text and summarization GenAI chat experience | Python",
+    "description": "Shows how Contoso Manufacturing workers can report issues using speech-to-text and summarization.",
+    "architectureDiagram": "./templates/images/summarization-openai-python-promptflow-arch.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Azure Content Team"
+    ],
+    "email": [
+      "mmhangami@microsoft.com",
+      "cassie.breviu@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/summarization-openai-python-promptflow",
+    "language": [
+      "python"
+    ],
+    "models": [
+      "gpt35turbo"
+    ],
+    "app_type": [
+      "agent"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "managedidentity",
+      "openai",
+      "aifoundry",
+      "aca",
+      "monitor"
+    ],
+    "prerequisites": [
+      "azd",
+      "python3.10+",
+      "docker",
+      "git"
+    ],
+    "tags": [],
+    "screenshot": "./templates/images/summarization-openai-python-promptflow-image.png",
+    "status_valid": true
+  },
+  {
+    "title": "Build RAG apps with LlamaIndex",
+    "description": "A foundation for building advanced RAG applications with LlamaIndex.ai and JavaScript.",
+    "architectureDiagram": "./templates/images/llama-index-javascript-arch.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Wassim Chegham"
+    ],
+    "email": [
+      "wassim.chegham@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/llama-index-javascript",
+    "language": [
+      "typescript"
+    ],
+    "models": [
+      "gpt35turbo",
+      "llama"
+    ],
+    "app_type": [
+      "chat"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "managedidentity",
+      "aca",
+      "openai"
+    ],
+    "prerequisites": [
+      "azd",
+      "docker",
+      "nodejslts",
+      "git",
+      "pwsh7+"
+    ],
+    "tags": [
+      "meta",
+      "azureopenai",
+      "featured"
+    ],
+    "screenshot": "/templates/images/llama-index-javascript-image.png",
+    "video": "https://www.youtube.com/embed/TvdObdPs4bI?si=tbPByaE6P-mjk0cl",
+    "status_valid": true
+  },
+  {
+    "title": "Monitor GenAI models and LLM applications with Arize AI",
+    "description": "Demonstrates monitoring models and LLM applications, troubleshooting retrieval and tool execution issues, and improving the RAG pipeline.",
+    "authorUrl": [
+      "https://github.com/Arize-ai/"
+    ],
+    "author": [
+      "Arize AI Team"
+    ],
+    "email": [
+      "kwomack@microsoft.com"
+    ],
+    "source": "https://github.com/Arize-ai/phoenix-on-azure",
+    "language": [
+      "python"
+    ],
+    "models": [],
+    "app_type": [
+      "llmops"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "aca",
+      "monitor"
+    ],
+    "prerequisites": [
+      "azd",
+      "python3.9-3.11"
+    ],
+    "tags": [],
+    "screenshot": "/templates/images/phoenix-on-azure-image.png",
+    "status_valid": true
+  },
+  {
+    "title": "Multimodal GenAI experience: Q&A on uploaded images",
+    "description": "Shows how to chat with uploaded images using OpenAI vision models such as GPT-4o.",
+    "architectureDiagram": "./templates/images/openai-chat-vision-quickstart-arch.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Azure Content Team"
+    ],
+    "email": [
+      "pamelafox@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/openai-chat-vision-quickstart",
+    "language": [
+      "python"
+    ],
+    "models": [
+      "gpt4o"
+    ],
+    "app_type": [
+      "chat"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "managedidentity",
+      "aca",
+      "azureaiservice",
+      "openai"
+    ],
+    "prerequisites": [
+      "azd",
+      "python3.10+",
+      "redis",
+      "docker",
+      "git"
+    ],
+    "tags": [
+      "featured",
+      "azureopenai"
+    ],
+    "screenshot": "/templates/images/openai-chat-vision-quickstart-image.png",
+    "video": "https://www.youtube.com/embed/gTquGYVX-jI?si=pZ-GqOSnjiSwkT3c",
+    "status_valid": true
+  },
+  {
+    "title": "Banking GenAI multi-agent assistant for transaction review",
+    "description": "Shows how bank users can use GenAI chat to check account balances, review transactions, and initiate payments.",
+    "architectureDiagram": "./templates/images/agent-openai-java-banking-assistant-arch.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Davide Antelmo"
+    ],
+    "email": [
+      "dantelmo@microsoft.com",
+      "john.oliver@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/agent-openai-java-banking-assistant",
+    "language": [
+      "java"
+    ],
+    "models": [
+      "gpt4o",
+      "gpt4omini"
+    ],
+    "app_type": [
+      "agent",
+      "chat"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "aca",
+      "managedidentity",
+      "monitor",
+      "openai",
+      "blobstorage"
+    ],
+    "prerequisites": [
+      "java17",
+      "azd",
+      "maven3.8.x",
+      "nodejs",
+      "git",
+      "pwsh7+"
+    ],
+    "tags": [
+      "azureopenai"
+    ],
+    "screenshot": "./templates/images/agent-openai-java-banking-assistant-image.png",
+    "status_valid": true
+  },
+  {
+    "title": "OpenAI + Semantic Kernel chat app quick start",
+    "description": "A simple C#/.NET chat application that uses the Semantic Kernel library and managed identity for Azure OpenAI access.",
+    "architectureDiagram": "./templates/images/ai-chat-quickstart-csharp.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Jordan Matthiesen"
+    ],
+    "email": [
+      "jomatthi@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/ai-chat-quickstart-csharp",
+    "language": [
+      "dotnetCsharp"
+    ],
+    "models": [
+      "gpt4omini"
+    ],
+    "app_type": [
+      "chat"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "openai",
+      "aisearch",
+      "aca"
+    ],
+    "prerequisites": [
+      "azd",
+      ".net8",
+      "git"
+    ],
+    "tags": [
+      "azureopenai"
+    ],
+    "screenshot": "/templates/images/ai-chat-quickstart-csharp-image.png",
+    "status_valid": true
+  },
+  {
+    "title": "GenAI app with keyless deployment | JavaScript",
+    "description": "Example Azure OpenAI deployment and RBAC role for your user account for keyless access.",
+    "architectureDiagram": "",
+    "authorUrl": [
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Yohan Lasorsa"
+    ],
+    "email": [
+      "yolasors@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/azure-openai-keyless-js",
+    "language": [
+      "typescript",
+      "javascript"
+    ],
+    "models": [
+      "gpt35turbo"
+    ],
+    "app_type": [
+      "chat"
+    ],
+    "template_type": "building_block",
+    "azure_service": [
+      "managedidentity",
+      "openai"
+    ],
+    "prerequisites": [
+      "nodejslts",
+      "azd",
+      "git",
+      "pwsh7+"
+    ],
+    "tags": [
+      "azureopenai"
+    ],
+    "status_valid": true
+  },
+  {
+    "title": "GenAI app with keyless deployment | Python",
+    "description": "Provision an Azure OpenAI resource with keyless authentication and use the Python OpenAI SDK to connect to it with your locally logged in Azure account.",
+    "architectureDiagram": "./templates/images/azure-openai-keyless-python.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Pamela Fox"
+    ],
+    "email": [
+      "pamelafox@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/azure-openai-keyless-python",
+    "language": [
+      "python"
+    ],
+    "models": [
+      "gpt4omini"
+    ],
+    "app_type": [
+      "chat"
+    ],
+    "template_type": "building_block",
+    "azure_service": [
+      "managedidentity",
+      "openai"
+    ],
+    "prerequisites": [
+      "python3.9-3.11",
+      "azd",
+      "git",
+      "pwsh7+"
+    ],
+    "tags": [
+      "azureopenai"
+    ],
+    "status_valid": true
+  },
+  {
+    "title": "Copilot sample app with Azure CosmosDB for NoSQL",
+    "description": "Shows how to build a Generative-AI application using Azure Cosmos DB for NoSQL using its new vector search capabilities and Azure OpenAI Service and Semantic Kernel",
+    "architectureDiagram": "./templates/images/cosmos-nosql-copilot.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples",
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Mark Brown",
+      "Jordan Matthiesen"
+    ],
+    "email": [
+      "mjbrown@microsoft.com",
+      "jomatthi@microsoft.com"
+    ],
+    "source": "https://github.com/AzureCosmosDB/cosmosdb-nosql-copilot",
+    "language": [
+      "dotnetCsharp",
+      "javascript"
+    ],
+    "models": [
+      "gpt4o",
+      "text-embedding-3-large"
+    ],
+    "app_type": [
+      "chat"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "managedidentity",
+      "openai",
+      "appservice",
+      "azurecosmosdb"
+    ],
+    "prerequisites": [
+      ".net8",
+      "azd"
+    ],
+    "tags": [
+      "azureopenai"
+    ],
+    "screenshot": "/templates/images/cosmosdb-nosql-copilot-image.png",
+    "status_valid": true
+  },
+  {
+    "title": "Monitor user interactions, errors, and performance metrics with Pinecone",
+    "description": "Demonstrates how to monitor and log activities such as user interactions, errors and exceptions, and performance metrics both server-side and client-side via Application Insights.",
+    "architectureDiagram": "./templates/images/pinecone-rag-demo-azd.png",
+    "authorUrl": [
+      "https://pinecone.io"
+    ],
+    "author": [
+      "Pinecone Team"
+    ],
+    "email": [
+      "kwomack@microsoft.com"
+    ],
+    "source": "https://github.com/pinecone-io/pinecone-rag-demo-azd",
+    "language": [
+      "typescript",
+      "javascript"
+    ],
+    "models": [],
+    "app_type": [
+      "agent"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "aca"
+    ],
+    "prerequisites": [
+      "azd",
+      "nodejs18+",
+      "docker"
+    ],
+    "tags": [
+      "pinecone"
+    ],
+    "status_valid": true
+  },
+  {
+    "title": "Document Q&A app with Pinecone Assistant",
+    "description": "Shows how to use Pinecone Assistant to upload documents, ask questions, and receive responses that reference your documents.",
+    "architectureDiagram": "./templates/images/pinecone-assistant-architecture.png",
+    "authorUrl": [
+      "https://docs.pinecone.io/guides/assistant/understanding-assistant"
+    ],
+    "author": [
+      "Pinecone Team"
+    ],
+    "email": [
+      "kwomack@microsoft.com"
+    ],
+    "source": "https://github.com/pinecone-io/pinecone-assistant-azd",
+    "language": [
+      "typescript",
+      "python"
+    ],
+    "models": [],
+    "app_type": [
+      "agent"
+    ],
+    "template_type": "building_block",
+    "azure_service": [
+      "aca"
+    ],
+    "prerequisites": [
+      "azd",
+      "pinecone-api"
+    ],
+    "tags": [
+      "pinecone"
+    ],
+    "status_valid": true
+  },
+  {
+    "title": "Real-time GenAI enhanced communication app with SignalR",
+    "description": "This project integrates SignalR with Azure OpenAI. It showcases how to create a seamless group chat experience using SignalR for real-time communication, enhanced by the intelligence of Azure OpenAI.",
+    "architectureDiagram": "./templates/images/signalr-ai-streaming.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples",
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Kevin Guo",
+      "Chenyang Liu"
+    ],
+    "email": [
+      "kevinguo@microsoft.com",
+      "chenyang.liu@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/signalr-ai-streaming",
+    "language": [
+      "dotnetCsharp",
+      "javascript",
+      "typescript"
+    ],
+    "models": [
+      "gpt4o"
+    ],
+    "app_type": [
+      "chat"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "managedidentity",
+      "openai",
+      "aca",
+      "azuresignalr"
+    ],
+    "prerequisites": [
+      ".net8",
+      "azd",
+      "docker"
+    ],
+    "tags": [
+      "azureopenai"
+    ],
+    "status_valid": true
+  },
+  {
+    "title": "Spring Petclinic Microservices with AI on Azure Container Apps",
+    "description": "A Spring Petclinic Microservice with OpenAI running on Azure Container Apps environment, with additional Azure services and Azure Container Apps features.",
+    "architectureDiagram": "./templates/images/java-microservices-aca-lab.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples",
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Songbo Wang",
+      "Hao Zhang"
+    ],
+    "email": [
+      "sonwan@microsoft.com",
+      "haozhan@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/java-microservices-aca-lab",
+    "language": [
+      "java",
+      "javascript",
+      "typescript"
+    ],
+    "models": [
+      "gpt4o",
+      "text-embedding-3-large"
+    ],
+    "app_type": [
+      "completions"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "managedidentity",
+      "azureaiservice",
+      "appservice",
+      "monitor",
+      "aca",
+      "azuredb-mysql",
+      "azurecosmosdb",
+      "openai"
+    ],
+    "prerequisites": [
+      "java17",
+      "azd",
+      "git",
+      "pwsh7+"
+    ],
+    "tags": [
+      "azureopenai"
+    ],
+    "status_valid": true
+  },
+  {
+    "title": "OpenAI chat with .NET Aspire and Microsoft.Extensions.AI",
+    "description": "A C#/.NET chat application using .NET Aspire and the Microsoft.Extensions.AI library with OpenAI. It uses managed identity for Azure OpenAI access",
+    "architectureDiagram": "./templates/images/ai-chat-aspire-meai-csharp.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples",
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Jordan Matthiesen",
+      "Luis Quintanilla"
+    ],
+    "email": [
+      "jomatthi@microsoft.com",
+      "luquinta@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/ai-chat-aspire-meai-csharp",
+    "language": [
+      "dotnetCsharp"
+    ],
+    "models": [
+      "gpt4o"
+    ],
+    "app_type": [
+      "completions"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "managedidentity",
+      "azureaiservice",
+      "aca",
+      "openai"
+    ],
+    "prerequisites": [
+      ".net8",
+      "azd",
+      "git"
+    ],
+    "tags": [
+      "azureopenai"
+    ],
+    "status_valid": true
+  },
+  {
+    "title": "Azure OpenAI secure UI starter",
+    "description": "Reusable OpenAI secure UI and infrastructure for AI Chat with Azure",
+    "architectureDiagram": "./templates/images/openai-secure-ui-js.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Yohan Lasorsa"
+    ],
+    "email": [
+      "yolasors@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/openai-secure-ui-js",
+    "language": [
+      "typescript",
+      "javascript"
+    ],
+    "models": [
+      "gpt35turbo"
+    ],
+    "app_type": [
+      "chat"
+    ],
+    "template_type": "building_block",
+    "azure_service": [
+      "swa",
+      "functions",
+      "managedidentity",
+      "openai"
+    ],
+    "prerequisites": [
+      "nodejslts",
+      "azd",
+      "git",
+      "pwsh7+"
+    ],
+    "tags": [
+      "azureopenai"
+    ],
+    "status_valid": true
+  },
+  {
+    "title": "Azure Agents Travel Assistant",
+    "description": "End-to-end sample of a travel assistant implemented with Azure Agents Runtime and Bot Framework.",
+    "architectureDiagram": "./templates/images/azureai-travel-agent-python.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples",
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Marco Cardoso",
+      "Amanda Foster"
+    ],
+    "email": [
+      "macardoso@microsoft.com",
+      "fosteramanda@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/azureai-travel-agent-python",
+    "language": [
+      "python",
+      "typescript",
+      "javascript"
+    ],
+    "models": [
+      "gpt4o"
+    ],
+    "app_type": [
+      "agent"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "appservice",
+      "azurecosmosdb",
+      "managedidentity",
+      "openai",
+      "aifoundry"
+    ],
+    "prerequisites": [
+      "python3.10+",
+      "azd",
+      "git",
+      "azcli"
+    ],
+    "tags": [
+      "azureopenai"
+    ],
+    "status_valid": true
+  },
+  {
+    "title": "Entity extraction with Azure OpenAI structured outputs",
+    "description": "Perform entity extraction on text, PDFs, images, and webpages using Azure OpenAI structured outputs and the Python openai package.",
+    "architectureDiagram": "./templates/images/azure-openai-entity-extraction.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples",
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Pamela Fox",
+      "Anthony Shaw"
+    ],
+    "email": [
+      "pamelafox@microsoft.com",
+      "anthonyshaw@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/azure-openai-entity-extraction",
+    "language": [
+      "python"
+    ],
+    "models": [
+      "gpt4o"
+    ],
+    "app_type": [
+      "completions"
+    ],
+    "template_type": "building_block",
+    "azure_service": [
+      "openai"
+    ],
+    "prerequisites": [
+      "python3.9-3.11",
+      "azd"
+    ],
+    "tags": [
+      "azureopenai"
+    ],
+    "status_valid": true
+  },
+  {
+    "title": "GenAI app with keyless deployment | Go",
+    "description": "Use OpenAI models securely without API keys using keyless (Entra) authentication.",
+    "architectureDiagram": "./templates/images/azure-openai-keyless-go.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples",
+      "https://learn.microsoft.com/azure/developer/go/"
+    ],
+    "author": [
+      "Richard Park",
+      "Azure SDK for Go"
+    ],
+    "email": [
+      "ripark@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/azure-openai-keyless-go",
+    "language": [
+      "golang"
+    ],
+    "models": [
+      "gpt35turbo"
+    ],
+    "app_type": [
+      "completions"
+    ],
+    "template_type": "building_block",
+    "azure_service": [
+      "managedidentity",
+      "openai"
+    ],
+    "prerequisites": [
+      "go1.18+",
+      "azd",
+      "git"
+    ],
+    "tags": [
+      "azureopenai"
+    ],
+    "status_valid": true
+  },
+  {
+    "title": "Customer Assistant with Java",
+    "description": "A customer assistant application using Semantic Kernel, that allows a customer support person to query and make changes to customer information.",
+    "architectureDiagram": "./templates/images/semantic-kernel-customer-assistant-demo-java.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples",
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "John Oliver",
+      "Derek Keeler"
+    ],
+    "email": [
+      "John.Oliver@microsoft.com",
+      "dekeeler@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/semantic-kernel-customer-assistant-demo-java",
+    "language": [
+      "java",
+      "typescript",
+      "javascript"
+    ],
+    "models": [
+      "gpt4o"
+    ],
+    "app_type": [
+      "chat"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "aca",
+      "managedidentity",
+      "openai"
+    ],
+    "prerequisites": [
+      "docker",
+      "java17",
+      "azd",
+      "git",
+      "pwsh7+"
+    ],
+    "tags": [
+      "azureopenai"
+    ],
+    "status_valid": true
+  },
+  {
+    "title": "VoiceRAG with Realtime API",
+    "description": "An app that lets users ask questions about a knowledge base over a real-time voice interface, using Azure AI Search and GPT-4o Realtime API.",
+    "architectureDiagram": "./templates/images/aisearch-openai-rag-audio.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Pamela Fox"
+    ],
+    "email": [
+      "pamelafox@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/aisearch-openai-rag-audio",
+    "language": [
+      "python",
+      "typescript",
+      "javascript"
+    ],
+    "models": [
+      "gpt4o"
+    ],
+    "app_type": [
+      "chat"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "aca",
+      "managedidentity",
+      "openai",
+      "aisearch"
+    ],
+    "prerequisites": [
+      "python3.11+",
+      "azd",
+      "git",
+      "pwsh7+",
+      "nodejs"
+    ],
+    "tags": [
+      "azureopenai"
+    ],
+    "status_valid": true
+  },
+  {
+    "title": "Azure AI Basic App Sample | Python",
+    "description": "This project creates an Azure AI Studio hub, project and connected resources including Azure AI Services, AI Search and more. It also deploys a simple chat application to Azure Container Apps.",
+    "architectureDiagram": "./templates/images/azureai-basic-python.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples",
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Dan Taylor",
+      "Pamela Fox"
+    ],
+    "email": [
+      "dantaylo@microsoft.com",
+      "pamelafox@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/azureai-basic-python",
+    "language": [
+      "python"
+    ],
+    "models": [
+      "gpt4omini",
+      "text-embedding-ada-002"
+    ],
+    "app_type": [
+      "chat"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "aca",
+      "managedidentity",
+      "openai",
+      "aisearch",
+      "aifoundry",
+      "keyvault",
+      "azureaiservice"
+    ],
+    "prerequisites": [
+      "python3.9-3.11",
+      "azd",
+      "git",
+      "docker"
+    ],
+    "tags": [
+      "azureopenai"
+    ],
+    "status_valid": true
+  },
+  {
+    "title": "Creative Writing Assistant Python: Working with Agents using Prompty",
+    "description": "Contoso-Creative-Writer: a creative writing assistant that shows how to orchestrate multiple models together using Prompty and Azure OpenAI. Includes the full GenAIOps: CI/CD, evaluation, tracing, monitoring, and experimentation!",
+    "architectureDiagram": "./templates/images/contoso-creative-writer.png",
+    "authorUrl": ["https://github.com/Azure-Samples", "https://github.com/Azure-Samples"],
+    "author": [
+      "Cassie Breviu",
+      "Seth Juarez"
+    ],
+    "email": [
+      "cassie.breviu@microsoft.com",
+      "seth.juarez@microsoft.com"
+    ],
+    "source": "https://github.com/Azure-Samples/contoso-creative-writer",
+    "language": [
+      "python",
+      "javascript",
+      "typescript"
+    ],
+    "models": [
+      "gpt35turbo",
+      "gpt4o",
+      "text-embedding-ada-002"
+    ],
+    "app_type": [
+      "chat"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "managedidentity",
+      "aisearch",
+      "aifoundry",
+      "aca",
+      "openai"
+    ],
+    "prerequisites": [
+      "python3.10+",
+      "azd",
+      "docker",
+      "git"
+    ],
+    "tags": [
+      "azureopenai"
+    ],
+    "status_valid": true
+  }
+]

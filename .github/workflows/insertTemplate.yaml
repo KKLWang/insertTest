@@ -1,0 +1,109 @@
+name: Insert Template
+
+on:
+  workflow_dispatch:
+    inputs:
+      metadataUrl:
+        description: 'URL of the repository to unpublish'
+        required: true
+      artchitectureUrl:
+        description: 'URL of artchitecture diagram'
+        required: false
+      screenshotUrl:
+        description: 'URL of screenshot'
+        required: false
+      ownerEmailList:
+        description: 'List of owner emails to notify'
+        required: true
+
+jobs:
+  insertTemplate:
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Install dependencies
+      - name: Install required tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl jq
+
+      # Step 3: Download and parse metadata
+      - name: Download and parse metadata
+        id: fetch_metadata
+        run: |
+          echo "Fetching metadata from ${{ inputs.metadataUrl }}"
+          curl -sL "${{ inputs.metadataUrl }}" > metadata.json
+
+          # Extract and validate metadata
+          name=$(jq -r '.name' metadata.json)
+          description=$(jq -r '.description' metadata.json)
+          repo_url=$(jq -r '.repositoryUrl' metadata.json)
+
+          echo "Metadata Name: $name"
+          echo "Description: $description"
+          echo "Repository URL: $repo_url"
+
+          # Export metadata values
+          echo "name=$name" >> $GITHUB_ENV
+          echo "description=$description" >> $GITHUB_ENV
+          echo "repo_url=$repo_url" >> $GITHUB_ENV
+
+      # Step 4: Save architecture image if URL is provided
+      - name: Save architecture diagram
+        if: ${{ inputs.architectureUrl != '' }}
+        run: |
+          echo "Downloading architecture image from ${{ inputs.architectureUrl }}"
+          curl -sL "${{ inputs.architectureUrl }}" -o images/architecture.png
+
+      # Step 5: Save screenshot image if URL is provided
+      - name: Save screenshot image
+        if: ${{ inputs.screenshotUrl != '' }}
+        run: |
+          echo "Downloading screenshot image from ${{ inputs.screenshotUrl }}"
+          curl -sL "${{ inputs.screenshotUrl }}" -o images/screenshot.png
+
+      # Step 6: Insert metadata into template.json
+      - name: Insert metadata into template.json
+        run: |
+          echo "Updating template.json"
+          
+          # Backup the original file
+          cp template.json template.json.bak
+
+          # Insert the new entry into template.json
+          jq '. += [{"name": "${{ env.name }}", "description": "${{ env.description }}", "repositoryUrl": "${{ env.repo_url }}", "architectureImage": "images/architecture.png", "screenshotImage": "images/screenshot.png"}]' template.json > tmp.json
+          
+          # Overwrite the original file
+          mv tmp.json template.json
+
+          echo "template.json updated successfully!"
+
+      # Step 7: Commit and push changes
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          branch_name="add-new-template-${{ env.name }}-$(date +%s)"
+          git checkout -b $branch_name
+
+          git add template.json
+          if [ -f images/architecture.png ]; then git add images/architecture.png; fi
+          if [ -f images/screenshot.png ]; then git add images/screenshot.png; fi
+
+          git commit -m "Add new template: ${{ env.name }}"
+          git push origin $branch_name
+
+          echo "branch_name=$branch_name" >> $GITHUB_ENV
+
+
+
+
+
