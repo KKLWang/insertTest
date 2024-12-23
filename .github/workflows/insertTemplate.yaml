@@ -46,15 +46,10 @@ jobs:
             exit 1
           fi
 
-          cat metadata.temp.json
-          new_entry=$(jq -c '.' metadata.temp.json)
           title=$(jq -r '.title' metadata.temp.json)
-          # Remove space in the title
           title=$(echo $title | tr -d ' ')
           
-          echo "Parsed Metadata: $new_entry"
           echo "Parsed Title: $title"
-          echo "new_entry=$new_entry" >> $GITHUB_ENV
           echo "title=$title" >> $GITHUB_ENV
 
       # Step 4: Save architecture image if URL is provided
@@ -88,10 +83,11 @@ jobs:
           # Backup the original file
           cp website/static/templates.json website/static/templates.json.bak
 
-          echo "New entry: ${{env.new_entry}}"
+          new_entry=$(cat metadata.temp.json | jq -c .)
+          echo "New entry: $new_entry"
 
           # Insert the new entry into template.json
-          jq ". += [${{env.new_entry}}]" website/static/templates.json > templates.tmp.json
+          jq ". += [$new_entry]" website/static/templates.json > templates.tmp.json
           
           # Overwrite the original file
           mv templates.tmp.json website/static/templates.json
