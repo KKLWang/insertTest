@@ -47,11 +47,11 @@ jobs:
 
           if [ ! -s metadata.temp.json ]; then
             echo "Metadata file is empty or download failed!"
-            metadata_exists=='false'
+            metadata_exists='false'
             exit 1
           fi
 
-          metadata_exists=='true'
+          metadata_exists='true'
           owner_email_list=$(echo '${{ inputs.ownerEmailList }}' | jq -R -c 'split(",")')
 
           # Update metadata with owner email list
@@ -68,7 +68,7 @@ jobs:
 
       # Step 4: Save architecture image if URL is provided
       - name: Save architecture diagram
-        if: ${{ inputs.artchitectureUrl != '' }} && ${{ env.metadata_exists == 'true' }}
+        if: ${{ inputs.artchitectureUrl != '' && env.metadata_exists == 'true' }}
         run: |
           arch_image_path="${{ inputs.templateFolder }}/templates/images/${{ env.name }}-arch.png"
           echo "Downloading architecture image from ${{ inputs.artchitectureUrl }} to $arch_image_path"
@@ -81,7 +81,7 @@ jobs:
 
       # Step 5: Save screenshot image if URL is provided
       - name: Save screenshot image
-        if: ${{ inputs.screenshotUrl != '' }} && ${{ env.metadata_exists == 'true' }}
+        if: ${{ inputs.screenshotUrl != '' && env.metadata_exists == 'true' }}
         run: |
           screenshot_image_path="${{ inputs.templateFolder }}/templates/images/${{ env.name }}-image.png"
           echo "Downloading screenshot image from ${{ inputs.screenshotUrl }} to $screenshot_image_path"
