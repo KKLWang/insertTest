@@ -15,6 +15,10 @@ on:
       ownerEmailList:
         description: 'List of owner emails to notify'
         required: true
+      templateFolder:
+        description: 'Folder to save the template'
+        required: false
+        default: 'website/static'
 
 jobs:
   insertTemplate:
@@ -46,25 +50,33 @@ jobs:
             exit 1
           fi
 
-          title=$(jq -r '.title' metadata.temp.json)
-          title=$(echo $title | tr -d ' ')
-          
-          echo "Parsed Title: $title"
-          echo "title=$title" >> $GITHUB_ENV
+          #update metadata with owner email list
+          jq ".ownerEmailList = [${{ inputs.ownerEmailList }}]" metadata.temp.json > metadata.temp.json 
+
+          source=$(jq -r '.source' metadata.temp.json)
+          name=$(echo $source | awk -F/ '{print $NF}')
+          echo "Parsed Source: $name"
+          echo "name=$name" >> $GITHUB_ENV
 
       # Step 4: Save architecture image if URL is provided
       - name: Save architecture diagram
-        if: ${{ inputs.architectureUrl != '' }}
+        if: ${{ inputs.artchitectureUrl != '' }}
         run: |
-          echo "Downloading architecture image from ${{ inputs.architectureUrl }}"
-          curl -sL "${{ inputs.architectureUrl }}" -o images/architecture.png
+          echo "Downloading architecture image from ${{ inputs.artchitectureUrl }}"
+          curl -sL "${{ inputs.artchitectureUrl }}" -o ${{ inputs.templateFolder }}/templates/images/${{ env.name }}-arch.png
+          
+          # Update metadata.temp.json with the new architecture image path
+          jq ".architecture = \"templates/images/${{ env.name }}-arch.png\"" metadata.temp.json > metadata.temp.json 
 
       # Step 5: Save screenshot image if URL is provided
       - name: Save screenshot image
         if: ${{ inputs.screenshotUrl != '' }}
         run: |
           echo "Downloading screenshot image from ${{ inputs.screenshotUrl }}"
-          curl -sL "${{ inputs.screenshotUrl }}" -o images/screenshot.png
+          curl -sL "${{ inputs.screenshotUrl }}" -o ${{ inputs.templateFolder }}/templates/images/${{ env.name }}-image.png
+
+          # Update metadata.temp.json with the new image image path
+          jq ".screenshot = \"templates/images/${{ env.name }}-image.png\"" metadata.temp.json > metadata.temp.json 
 
       # Step 6: Insert metadata into template.json
       - name: Insert metadata into template.json
@@ -72,25 +84,25 @@ jobs:
           echo "Updating template.json"
           
           # Ensure the target directory exists
-          mkdir -p website/static
+          mkdir -p ${{ inputs.templateFolder }}
           
           # Check if the templates.json file exists
-          if [ ! -f website/static/templates.json ]; then
+          if [ ! -f ${{ inputs.templateFolder }}/templates.json ]; then
             echo "templates.json not found, creating a new one"
-            echo "[]" > website/static/templates.json
+            echo "[]" > ${{ inputs.templateFolder }}/templates.json
           fi
           
           # Backup the original file
-          cp website/static/templates.json website/static/templates.json.bak
+          cp${{ inputs.templateFolder }}/templates.json ${{ inputs.templateFolder }}/templates.json.bak
 
           new_entry=$(cat metadata.temp.json | jq -c .)
           echo "New entry: $new_entry"
 
           # Insert the new entry into template.json
-          jq ". += [$new_entry]" website/static/templates.json > templates.tmp.json
+          jq ". += [$new_entry]" ${{ inputs.templateFolder }}/templates.json > templates.tmp.json
           
           # Overwrite the original file
-          mv templates.tmp.json website/static/templates.json
+          mv templates.tmp.json ${{ inputs.templateFolder }}/templates.json
 
           echo "template.json updated successfully!"
 
@@ -100,19 +112,12 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          branch_name="add-new-template-${{ env.title }}-$(date +%s)"
+          branch_name="add-new-template-${{ env.name }}-$(date +%s)"
           git checkout -b $branch_name
 
-          git add template.json
-          if [ -f images/architecture.png ]; then git add images/architecture.png; fi
-          if [ -f images/screenshot.png ]; then git add images/screenshot.png; fi
+          git add -A
 
-          git commit -m "Add new template: ${{ env.title }}"
+          git commit -m "Add new template: ${{ env.name }}"
           git push origin $branch_name
 
           echo "branch_name=$branch_name" >> $GITHUB_ENV
-
-
-
-
-
