@@ -48,9 +48,14 @@ jobs:
 
           cat metadata.temp.json
           new_entry=$(jq -c '.' metadata.temp.json)
+          title = $(jq -r '.title' metadata.temp.json)
+          # Remove space in the title
+          title=$(echo $title | tr -d ' ')
           
           echo "Parsed Metadata: $new_entry"
+          ehco "Parsed Title: $title"
           echo "new_entry=$new_entry" >> $GITHUB_ENV
+          echo "title=$title" >> $GITHUB_ENV
 
       # Step 4: Save architecture image if URL is provided
       - name: Save architecture diagram
@@ -83,12 +88,10 @@ jobs:
           # Backup the original file
           cp website/static/templates.json website/static/templates.json.bak
 
-          # Read the new metadata entry
-          new_entry=$(cat metadata.temp.json)
-          echo "New entry: $new_entry"
+          echo "New entry: ${{env.new_entry}}"
 
           # Insert the new entry into template.json
-          jq ". += [$new_entry]" website/static/templates.json > templates.tmp.json
+          jq ". += [${{env.new_entry}}]" website/static/templates.json > templates.tmp.json
           
           # Overwrite the original file
           mv templates.tmp.json website/static/templates.json
@@ -101,14 +104,14 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          branch_name="add-new-template-${{ env.name }}-$(date +%s)"
+          branch_name="add-new-template-${{ env.title }}-$(date +%s)"
           git checkout -b $branch_name
 
           git add template.json
           if [ -f images/architecture.png ]; then git add images/architecture.png; fi
           if [ -f images/screenshot.png ]; then git add images/screenshot.png; fi
 
-          git commit -m "Add new template: ${{ env.name }}"
+          git commit -m "Add new template: ${{ env.title }}"
           git push origin $branch_name
 
           echo "branch_name=$branch_name" >> $GITHUB_ENV
