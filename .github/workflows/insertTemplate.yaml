@@ -48,7 +48,7 @@ jobs:
 
           cat metadata.temp.json
           new_entry=$(jq -c '.' metadata.temp.json)
-          title = $(jq -r '.title' metadata.temp.json)
+          title=$(jq -r '.title' metadata.temp.json)
           # Remove space in the title
           title=$(echo $title | tr -d ' ')
           
