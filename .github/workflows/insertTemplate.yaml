@@ -40,11 +40,16 @@ jobs:
         run: |
           echo "Fetching metadata from ${{ inputs.metadataUrl }}"
           curl -sL "${{ inputs.metadataUrl }}" > metadata.temp.json
-          cat metadata.temp.json
-          new_entry=cat metadata.temp.json
-          echo "$new_entry"
 
-          # Export metadata values
+          if [ ! -s metadata.temp.json ]; then
+            echo "Metadata file is empty or download failed!"
+            exit 1
+          fi
+
+          cat metadata.temp.json
+          new_entry=$(jq -c '.' metadata.temp.json)
+          
+          echo "Parsed Metadata: $new_entry"
           echo "new_entry=$new_entry" >> $GITHUB_ENV
 
       # Step 4: Save architecture image if URL is provided
