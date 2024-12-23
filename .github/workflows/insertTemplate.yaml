@@ -50,8 +50,13 @@ jobs:
             exit 1
           fi
 
-          #update metadata with owner email list
-          jq ".ownerEmailList = [${{ inputs.ownerEmailList }}]" metadata.temp.json > metadata.temp.json 
+          owner_email_list=$(echo '${{ inputs.ownerEmailList }}' | jq -R -c 'split(",")')
+
+          # Update metadata with owner email list
+          jq --argjson emailList "$owner_email_list" '.ownerEmailList = $emailList' metadata.temp.json > updated.temp.json
+          mv updated.temp.json metadata.temp.json
+
+          cat metadata.temp.json
 
           source=$(jq -r '.source' metadata.temp.json)
           name=$(echo $source | awk -F/ '{print $NF}')
