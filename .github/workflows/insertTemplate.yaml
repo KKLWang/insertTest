@@ -67,8 +67,8 @@ jobs:
       - name: Save architecture diagram
         if: ${{ inputs.artchitectureUrl != '' }}
         run: |
-          $arch_image_path = ${{ inputs.templateFolder }}/templates/images/${{ env.name }}-arch.png
-          echo "Downloading architecture image from ${{ inputs.artchitectureUrl }}"
+          $arch_image_path=${{ inputs.templateFolder }}/templates/images/${{ env.name }}-arch.png
+          echo "Downloading architecture image from ${{ inputs.artchitectureUrl }} to $arch_image_path"
           curl -sL "${{ inputs.artchitectureUrl }}" -o $arch_image_path
           
           # Update metadata.temp.json with the new architecture image path
@@ -80,8 +80,8 @@ jobs:
       - name: Save screenshot image
         if: ${{ inputs.screenshotUrl != '' }}
         run: |
-          $screenshot_image_path = ${{ inputs.templateFolder }}/templates/images/${{ env.name }}-image.png
-          echo "Downloading screenshot image from ${{ inputs.screenshotUrl }}"
+          $screenshot_image_path=${{ inputs.templateFolder }}/templates/images/${{ env.name }}-image.png
+          echo "Downloading screenshot image from ${{ inputs.screenshotUrl }} to $screenshot_image_path"
           curl -sL "${{ inputs.screenshotUrl }}" -o $screenshot_image_path
 
           # Update metadata.temp.json with the new image image path
