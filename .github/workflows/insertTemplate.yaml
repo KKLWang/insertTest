@@ -71,17 +71,27 @@ jobs:
         run: |
           echo "Updating template.json"
           
+          # Ensure the target directory exists
+          mkdir -p website/static
+          
+          # Check if the templates.json file exists
+          if [ ! -f website/static/templates.json ]; then
+            echo "templates.json not found, creating a new one"
+            echo "[]" > website/static/templates.json
+          fi
+          
           # Backup the original file
-          cp website\static\templates.json website\static\tmplates.json.bak
+          cp website/static/templates.json website/static/templates.json.bak
 
-          new_entry=cat metadata.temp.json
-          echo "$new_entry"
+          # Read the new metadata entry
+          new_entry=$(cat metadata.temp.json)
+          echo "New entry: $new_entry"
 
           # Insert the new entry into template.json
-          jq '. += ["${{ env.new_entry }}"]' website\static\templates.json > templates.tmp.json
+          jq ". += [$new_entry]" website/static/templates.json > templates.tmp.json
           
           # Overwrite the original file
-          mv templates.tmp.json website\static\templates.json
+          mv templates.tmp.json website/static/templates.json
 
           echo "template.json updated successfully!"
 
