@@ -53,7 +53,7 @@ jobs:
           title=$(echo $title | tr -d ' ')
           
           echo "Parsed Metadata: $new_entry"
-          ehco "Parsed Title: $title"
+          echo "Parsed Title: $title"
           echo "new_entry=$new_entry" >> $GITHUB_ENV
           echo "title=$title" >> $GITHUB_ENV
 
