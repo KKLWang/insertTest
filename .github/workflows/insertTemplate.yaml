@@ -62,7 +62,7 @@ jobs:
 
           source=$(jq -r '.source' metadata.temp.json)
           name=$(echo $source | awk -F/ '{print $NF}')
-          branch_name="add-new-template-${{ env.title }}-$(date +%s)""
+          branch_name="add-new-template-${{ env.title }}-$(date +%s)"
           echo "Source: $name"
           echo "Branch Name: $branch_name"
           echo "name=$name" >> $GITHUB_ENV
