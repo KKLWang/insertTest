@@ -62,8 +62,11 @@ jobs:
 
           source=$(jq -r '.source' metadata.temp.json)
           name=$(echo $source | awk -F/ '{print $NF}')
-          echo "Parsed Source: $name"
+          branch_name="add-new-template-${{ env.title }}-$(date +%s)""
+          echo "Source: $name"
+          echo "Branch Name: $branch_name"
           echo "name=$name" >> $GITHUB_ENV
+          echo "branch_name=$branch_name" >> $GITHUB_ENV
           echo "metadata_exists=$metadata_exists" >> $GITHUB_ENV
 
       # Step 4: Save architecture image if URL is provided
@@ -132,7 +135,7 @@ jobs:
         with:
           commit-message: "Publish template: ${{ env.name }}"
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: add-new-template-${{ env.title }}-$(date +%s)
+          branch: ${{ env.branch_name }}
           base: main
           title: "Publish template:  ${{ env.name }}"
           body: |
