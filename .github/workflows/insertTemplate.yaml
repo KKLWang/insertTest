@@ -53,7 +53,7 @@ jobs:
           owner_email_list=$(echo '${{ inputs.ownerEmailList }}' | jq -R -c 'split(",")')
 
           # Update metadata with owner email list
-          jq --argjson emailList "$owner_email_list" '.ownerEmailList = $emailList' metadata.temp.json > updated.temp.json
+          jq --argjson emailList "$owner_email_list" '.email = $emailList' metadata.temp.json > updated.temp.json
           mv updated.temp.json metadata.temp.json
 
           cat metadata.temp.json
@@ -67,21 +67,27 @@ jobs:
       - name: Save architecture diagram
         if: ${{ inputs.artchitectureUrl != '' }}
         run: |
+          $arch_image_path = ${{ inputs.templateFolder }}/templates/images/${{ env.name }}-arch.png
           echo "Downloading architecture image from ${{ inputs.artchitectureUrl }}"
-          curl -sL "${{ inputs.artchitectureUrl }}" -o ${{ inputs.templateFolder }}/templates/images/${{ env.name }}-arch.png
+          curl -sL "${{ inputs.artchitectureUrl }}" -o $arch_image_path
           
           # Update metadata.temp.json with the new architecture image path
-          jq ".architecture = \"templates/images/${{ env.name }}-arch.png\"" metadata.temp.json > metadata.temp.json 
+          jq ".architecture = \"$arch_image_path\"" metadata.temp.json > updated.temp.json
+          mv updated.temp.json metadata.temp.json
+          cat metadata.temp.json
 
       # Step 5: Save screenshot image if URL is provided
       - name: Save screenshot image
         if: ${{ inputs.screenshotUrl != '' }}
         run: |
+          $screenshot_image_path = ${{ inputs.templateFolder }}/templates/images/${{ env.name }}-image.png
           echo "Downloading screenshot image from ${{ inputs.screenshotUrl }}"
-          curl -sL "${{ inputs.screenshotUrl }}" -o ${{ inputs.templateFolder }}/templates/images/${{ env.name }}-image.png
+          curl -sL "${{ inputs.screenshotUrl }}" -o $screenshot_image_path
 
           # Update metadata.temp.json with the new image image path
-          jq ".screenshot = \"templates/images/${{ env.name }}-image.png\"" metadata.temp.json > metadata.temp.json 
+          jq ".screenshot = \"$screenshot_image_path\"" metadata.temp.json > updated.temp.json
+          mv updated.temp.json metadata.temp.json
+          cat metadata.temp.json
 
       # Step 6: Insert metadata into template.json
       - name: Insert metadata into template.json
@@ -98,7 +104,7 @@ jobs:
           fi
           
           # Backup the original file
-          cp${{ inputs.templateFolder }}/templates.json ${{ inputs.templateFolder }}/templates.json.bak
+          cp ${{ inputs.templateFolder }}/templates.json ${{ inputs.templateFolder }}/templates.json.bak
 
           new_entry=$(cat metadata.temp.json | jq -c .)
           echo "New entry: $new_entry"
