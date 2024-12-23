@@ -47,9 +47,11 @@ jobs:
 
           if [ ! -s metadata.temp.json ]; then
             echo "Metadata file is empty or download failed!"
+            metadata_exists=='false'
             exit 1
           fi
 
+          metadata_exists=='true'
           owner_email_list=$(echo '${{ inputs.ownerEmailList }}' | jq -R -c 'split(",")')
 
           # Update metadata with owner email list
@@ -62,35 +64,37 @@ jobs:
           name=$(echo $source | awk -F/ '{print $NF}')
           echo "Parsed Source: $name"
           echo "name=$name" >> $GITHUB_ENV
+          echo "metadata_exists=$metadata_exists" >> $GITHUB_ENV
 
       # Step 4: Save architecture image if URL is provided
       - name: Save architecture diagram
-        if: ${{ inputs.artchitectureUrl != '' }}
+        if: ${{ inputs.artchitectureUrl != '' }} && ${{ env.metadata_exists == 'true' }}
         run: |
           arch_image_path="${{ inputs.templateFolder }}/templates/images/${{ env.name }}-arch.png"
           echo "Downloading architecture image from ${{ inputs.artchitectureUrl }} to $arch_image_path"
           curl -sL "${{ inputs.artchitectureUrl }}" -o $arch_image_path
           
           # Update metadata.temp.json with the new architecture image path
-          jq ".architectureDiagram = \"$arch_image_path\"" metadata.temp.json > updated.temp.json
+          jq ".architectureDiagram = \"./templates/images/${{ env.name }}-arch.png\"" metadata.temp.json > updated.temp.json
           mv updated.temp.json metadata.temp.json
           cat metadata.temp.json
 
       # Step 5: Save screenshot image if URL is provided
       - name: Save screenshot image
-        if: ${{ inputs.screenshotUrl != '' }}
+        if: ${{ inputs.screenshotUrl != '' }} && ${{ env.metadata_exists == 'true' }}
         run: |
           screenshot_image_path="${{ inputs.templateFolder }}/templates/images/${{ env.name }}-image.png"
           echo "Downloading screenshot image from ${{ inputs.screenshotUrl }} to $screenshot_image_path"
           curl -sL "${{ inputs.screenshotUrl }}" -o $screenshot_image_path
 
           # Update metadata.temp.json with the new image image path
-          jq ".screenshot = \"$screenshot_image_path\"" metadata.temp.json > updated.temp.json
+          jq ".screenshot = \"./templates/images/${{ env.name }}-image.png\"" metadata.temp.json > updated.temp.json
           mv updated.temp.json metadata.temp.json
           cat metadata.temp.json
 
       # Step 6: Insert metadata into template.json
       - name: Insert metadata into template.json
+        if: ${{ env.metadata_exists == 'true' }}
         run: |
           echo "Updating template.json"
           
@@ -117,18 +121,21 @@ jobs:
 
           echo "template.json updated successfully!"
 
-      # Step 7: Commit and push changes
-      - name: Commit and push changes
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          # Remove backup file and temporary metadata file
+          rm ${{ inputs.templateFolder }}/templates.json.bak
+          rm metadata.temp.json
 
-          branch_name="add-new-template-${{ env.name }}-$(date +%s)"
-          git checkout -b $branch_name
-
-          git add -A
-
-          git commit -m "Add new template: ${{ env.name }}"
-          git push origin $branch_name
-
-          echo "branch_name=$branch_name" >> $GITHUB_ENV
+      # Step 7: Create Pull Request
+      - name: Create Pull Request
+        if: ${{ env.metadata_exists == 'true' }}
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "Publish template: ${{ env.name }}"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: add-new-template-${{ env.title }}-$(date +%s)
+          base: main
+          title: "Publish template:  ${{ env.name }}"
+          body: |
+            This PR unpublishes the template with repository URL:  ${{ env.name }}
+          delete-branch: true
+          sign-commits: true
