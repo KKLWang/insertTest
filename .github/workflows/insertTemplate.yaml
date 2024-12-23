@@ -40,6 +40,7 @@ jobs:
         run: |
           echo "Fetching metadata from ${{ inputs.metadataUrl }}"
           curl -sL "${{ inputs.metadataUrl }}" > metadata.temp.json
+          cat metadata.temp.json
           new_entry=cat metadata.temp.json
           echo "$new_entry"
 
