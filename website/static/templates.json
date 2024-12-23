@@ -1404,7 +1404,10 @@
     "title": "Creative Writing Assistant Python: Working with Agents using Prompty",
     "description": "Contoso-Creative-Writer: a creative writing assistant that shows how to orchestrate multiple models together using Prompty and Azure OpenAI. Includes the full GenAIOps: CI/CD, evaluation, tracing, monitoring, and experimentation!",
     "architectureDiagram": "./templates/images/contoso-creative-writer.png",
-    "authorUrl": ["https://github.com/Azure-Samples", "https://github.com/Azure-Samples"],
+    "authorUrl": [
+      "https://github.com/Azure-Samples",
+      "https://github.com/Azure-Samples"
+    ],
     "author": [
       "Cassie Breviu",
       "Seth Juarez"
@@ -1444,6 +1447,54 @@
     "tags": [
       "azureopenai"
     ],
+    "status_valid": true
+  },
+  {
+    "title": "Test Title",
+    "description": "Test",
+    "architectureDiagram": "./templates/images/test-arch.png",
+    "authorUrl": [
+      "https://github.com/Azure-Samples"
+    ],
+    "author": [
+      "Azure Content Team"
+    ],
+    "email": [
+      "lianw@abc"
+    ],
+    "source": "https://github.com/Azure-Samples/test",
+    "language": [
+      "python",
+      "typescript"
+    ],
+    "models": [
+      "gpt35turbo"
+    ],
+    "app_type": [
+      "search"
+    ],
+    "template_type": "full_sample",
+    "azure_service": [
+      "appservice",
+      "openai",
+      "aisearch",
+      "blobstorage",
+      "monitor",
+      "aca"
+    ],
+    "prerequisites": [
+      "azd",
+      "nodejs18+",
+      "git",
+      "pwsh7+",
+      "python3.9-3.11"
+    ],
+    "tags": [
+      "featured",
+      "azureopenai"
+    ],
+    "screenshot": "./templates/images/test-image.png",
+    "video": "test",
     "status_valid": true
   }
 ]
