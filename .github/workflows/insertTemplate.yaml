@@ -39,24 +39,12 @@ jobs:
         id: fetch_metadata
         run: |
           echo "Fetching metadata from ${{ inputs.metadataUrl }}"
-          curl -sL "${{ inputs.metadataUrl }}" > metadata.json
-
-          # print metadata.json
-          cat metadata.json
-
-          # Extract and validate metadata
-          name=$(jq -r '.title' metadata.json)
-          description=$(jq -r '.description' metadata.json)
-          repo_url=$(jq -r '.source' metadata.json)
-
-          echo "Metadata Name: $name"
-          echo "Description: $description"
-          echo "Repository URL: $repo_url"
+          curl -sL "${{ inputs.metadataUrl }}" > metadata.temp.json
+          new_entry=cat metadata.temp.json
+          echo "$new_entry"
 
           # Export metadata values
-          echo "name=$name" >> $GITHUB_ENV
-          echo "description=$description" >> $GITHUB_ENV
-          echo "repo_url=$repo_url" >> $GITHUB_ENV
+          echo "new_entry=$new_entry" >> $GITHUB_ENV
 
       # Step 4: Save architecture image if URL is provided
       - name: Save architecture diagram
@@ -78,13 +66,16 @@ jobs:
           echo "Updating template.json"
           
           # Backup the original file
-          cp template.json template.json.bak
+          cp website\static\templates.json website\static\tmplates.json.bak
+
+          new_entry=cat metadata.temp.json
+          echo "$new_entry"
 
           # Insert the new entry into template.json
-          jq '. += [{"name": "${{ env.name }}", "description": "${{ env.description }}", "repositoryUrl": "${{ env.repo_url }}", "architectureImage": "images/architecture.png", "screenshotImage": "images/screenshot.png"}]' template.json > tmp.json
+          jq '. += ["${{ env.new_entry }}"]' website\static\templates.json > templates.tmp.json
           
           # Overwrite the original file
-          mv tmp.json template.json
+          mv templates.tmp.json website\static\templates.json
 
           echo "template.json updated successfully!"
 
