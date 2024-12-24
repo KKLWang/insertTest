@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       metadataUrl:
-        description: 'URL of the repository to unpublish'
+        description: 'URL of metadata to insert'
         required: true
       artchitectureUrl:
         description: 'URL of artchitecture diagram'
@@ -13,20 +13,12 @@ on:
         description: 'URL of screenshot'
         required: false
       ownerEmailList:
-        description: 'List of owner emails to notify'
+        description: 'List of owner emails'
         required: true
       templateFolder:
-        description: 'Folder to save the template'
+        description: 'Target folder to save the template'
         required: false
         default: 'website/static'
-      running_os:
-          description: 'Target running os'
-          type: choice
-          default: '["ubuntu-20.04"]'
-          options:     
-          - '["ubuntu-20.04", "windows-latest"]'
-          - '["ubuntu-20.04"]'
-          - '["windows-latest"]'
 
 jobs:
   insertTemplate:
@@ -50,12 +42,20 @@ jobs:
       - name: Download and parse metadata
         id: fetch_metadata
         run: |
-          echo "Fetching metadata from ${{ inputs.metadataUrl }}"
-          curl -sL "${{ inputs.metadataUrl }}" > metadata.temp.json
-
+          metadata_exists='false'
+          if [[ "${{ inputs.metadataUrl }}" =~ ^https?:\/\/.* ]]; then
+            echo "Fetching metadata from ${{ inputs.metadataUrl }}"
+            curl -sL "${{ inputs.metadataUrl }}" > metadata.temp.json
+          fi
+          
           if [ ! -s metadata.temp.json ]; then
             echo "Metadata file is empty or download failed!"
-            metadata_exists='false'
+            exit 1
+          fi
+
+          # Check if metadata file is valid JSON
+          if ! jq empty metadata.temp.json; then
+            echo "Metadata file is not a valid JSON!"
             exit 1
           fi
 
@@ -71,9 +71,10 @@ jobs:
           source=$(jq -r '.source' metadata.temp.json)
           name=$(echo $source | awk -F/ '{print $NF}')
           branch_name="add-new-template-$name-$(date +%s)"
-          echo "Source: $name"
+          echo "Name: $name"
           echo "Branch Name: $branch_name"
           echo "Metadata exists: $metadata_exists"
+          echo "source=$source" >> $GITHUB_ENV
           echo "name=$name" >> $GITHUB_ENV
           echo "branch_name=$branch_name" >> $GITHUB_ENV
           echo "metadata_exists=$metadata_exists" >> $GITHUB_ENV
@@ -81,28 +82,39 @@ jobs:
       # Step 4: Save architecture image if URL is provided
       - name: Save architecture diagram
         if: ${{ inputs.artchitectureUrl != '' && env.metadata_exists == 'true' }}
-        run: |
-          arch_image_path="${{ inputs.templateFolder }}/templates/images/${{ env.name }}-arch.png"
-          echo "Downloading architecture image from ${{ inputs.artchitectureUrl }} to $arch_image_path"
-          curl -sL "${{ inputs.artchitectureUrl }}" -o $arch_image_path
-          
-          # Update metadata.temp.json with the new architecture image path
-          jq ".architectureDiagram = \"./templates/images/${{ env.name }}-arch.png\"" metadata.temp.json > updated.temp.json
-          mv updated.temp.json metadata.temp.json
-          cat metadata.temp.json
+        run: |          
+          echo "Validating architecture URL: ${{ inputs.architectureUrl }}"
+          if [[ "${{ inputs.artchitectureUrl }}" =~ ^https?:\/\/.* ]] && [[ "${{ inputs.artchitectureUrl }}" == *.png ]]; then
+            arch_image_path="${{ inputs.templateFolder }}/templates/images/${{ env.name }}-arch.png"
+            echo "Downloading architecture image from ${{ inputs.artchitectureUrl }} to $arch_image_path"
+            curl -sL "${{ inputs.artchitectureUrl }}" -o $arch_image_path
+
+            # Update metadata.temp.json with the new architecture image path
+            jq ".architectureDiagram = \"./templates/images/${{ env.name }}-arch.png\"" metadata.temp.json > updated.temp.json
+            mv updated.temp.json metadata.temp.json
+            cat metadata.temp.json
+          else
+            echo "Invalid architecture URL provided!"
+            exit 1
+          fi
 
       # Step 5: Save screenshot image if URL is provided
       - name: Save screenshot image
         if: ${{ inputs.screenshotUrl != '' && env.metadata_exists == 'true' }}
         run: |
-          screenshot_image_path="${{ inputs.templateFolder }}/templates/images/${{ env.name }}-image.png"
-          echo "Downloading screenshot image from ${{ inputs.screenshotUrl }} to $screenshot_image_path"
-          curl -sL "${{ inputs.screenshotUrl }}" -o $screenshot_image_path
+          if [[ "${{ inputs.screenshotUrl }}" =~ ^https?:\/\/.* ]] && [[ "${{ inputs.screenshotUrl }}" == *.png ]]; then
+            screenshot_image_path="${{ inputs.templateFolder }}/templates/images/${{ env.name }}-image.png"
+            echo "Downloading screenshot image from ${{ inputs.screenshotUrl }} to $screenshot_image_path"
+            curl -sL "${{ inputs.screenshotUrl }}" -o $screenshot_image_path
 
-          # Update metadata.temp.json with the new image image path
-          jq ".screenshot = \"./templates/images/${{ env.name }}-image.png\"" metadata.temp.json > updated.temp.json
-          mv updated.temp.json metadata.temp.json
-          cat metadata.temp.json
+            # Update metadata.temp.json with the new image image path
+            jq ".screenshot = \"./templates/images/${{ env.name }}-image.png\"" metadata.temp.json > updated.temp.json
+            mv updated.temp.json metadata.temp.json
+            cat metadata.temp.json
+          else
+            echo "Invalid screenshot URL provided!"
+            exit 1
+          fi
 
       # Step 6: Insert metadata into template.json
       - name: Insert metadata into template.json
@@ -148,6 +160,6 @@ jobs:
           base: main
           title: "Publish template:  ${{ env.name }}"
           body: |
-            This PR unpublishes the template with repository URL:  ${{ env.name }}
+            This PR publish the template with repository URL:  ${{ env.source }}
           delete-branch: true
           sign-commits: true
