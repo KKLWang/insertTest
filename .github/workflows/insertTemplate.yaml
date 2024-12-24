@@ -77,7 +77,7 @@ jobs:
       - name: Save architecture diagram
         if: ${{ inputs.artchitectureUrl != '' && env.metadata_exists == 'true' }}
         run: |          
-          echo "Validating architecture URL: ${{ inputs.architectureUrl }}"
+          echo "Validating architecture URL: ${{ inputs.artchitectureUrl }}"
           if [[ "${{ inputs.artchitectureUrl }}" =~ ^https?:\/\/.* ]] && [[ "${{ inputs.artchitectureUrl }}" == *.png ]]; then
             arch_image_path="${{ inputs.templateFolder }}/templates/images/${{ env.name }}-arch.png"
             echo "Downloading architecture image from ${{ inputs.artchitectureUrl }} to $arch_image_path"
@@ -96,6 +96,7 @@ jobs:
       - name: Save screenshot image
         if: ${{ inputs.screenshotUrl != '' && env.metadata_exists == 'true' }}
         run: |
+          echo "Validating screenshot URL: ${{ inputs.screenshotUrl }}"
           if [[ "${{ inputs.screenshotUrl }}" =~ ^https?:\/\/.* ]] && [[ "${{ inputs.screenshotUrl }}" == *.png ]]; then
             screenshot_image_path="${{ inputs.templateFolder }}/templates/images/${{ env.name }}-image.png"
             echo "Downloading screenshot image from ${{ inputs.screenshotUrl }} to $screenshot_image_path"
