@@ -53,12 +53,6 @@ jobs:
             exit 1
           fi
 
-          # Check if metadata file is valid JSON
-          if ! jq empty metadata.temp.json; then
-            echo "Metadata file is not a valid JSON!"
-            exit 1
-          fi
-
           metadata_exists='true'
           owner_email_list=$(echo '${{ inputs.ownerEmailList }}' | jq -R -c 'split(",")')
 
