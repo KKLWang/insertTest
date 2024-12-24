@@ -19,6 +19,14 @@ on:
         description: 'Folder to save the template'
         required: false
         default: 'website/static'
+      running_os:
+          description: 'Target running os'
+          type: choice
+          default: '["ubuntu-20.04"]'
+          options:     
+          - '["ubuntu-20.04", "windows-latest"]'
+          - '["ubuntu-20.04"]'
+          - '["windows-latest"]'
 
 jobs:
   insertTemplate:
@@ -62,7 +70,7 @@ jobs:
 
           source=$(jq -r '.source' metadata.temp.json)
           name=$(echo $source | awk -F/ '{print $NF}')
-          branch_name="add-new-template-${{ env.name }}-$(date +%s)"
+          branch_name="add-new-template-$name-$(date +%s)"
           echo "Source: $name"
           echo "Branch Name: $branch_name"
           echo "Metadata exists: $metadata_exists"
